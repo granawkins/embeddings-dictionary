@@ -27,8 +27,11 @@ from typing import List, Optional
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
 )
+
+# Rate limiting parameters
+REQUEST_DELAY = 0.1  # 100ms between requests to be nice to the API
 
 
 def fetch_wiktionary_words(
@@ -44,7 +47,7 @@ def fetch_wiktionary_words(
         num_words: Maximum number of words to fetch
 
     Returns:
-        List of words in frequency order, or None if fetch fails
+        List of words, or None if fetch fails
     """
     try:
         all_words = []
